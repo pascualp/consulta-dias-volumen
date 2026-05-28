@@ -279,15 +279,18 @@ $part1 = @'
 
         /* Autocomplete results dropdown */
         .autocomplete-item {
-            padding: 8px 12px;
+            padding: 10px 14px;
             cursor: pointer;
-            font-size: 13px;
-            border-radius: 4px;
+            font-size: 13.5px;
+            border-radius: 6px;
             transition: var(--transition);
             user-select: none;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            flex-shrink: 0;
+            line-height: 1.4;
+            display: block;
         }
 
         .autocomplete-item:hover {
@@ -767,7 +770,7 @@ $part1 = @'
         <header>
             <div class="header-title">
                 <h1>Calendario de Actividad y Volumen de Ventas</h1>
-                <p>Planificación de Repartos <span style="margin:0 8px; opacity:0.4;">|</span> Análisis de Abril y Mayo de 2026</p>
+                <p>Planificaci&oacute;n de Repartos <span style="margin:0 8px; opacity:0.4;">|</span> An&aacute;lisis de Abril y Mayo de 2026</p>
             </div>
             <div class="header-controls">
                 <button class="theme-btn" onclick="toggleTheme()">
@@ -881,18 +884,18 @@ $part1 = @'
                     <div id="detail-content" style="display: none; height: 100%; flex-direction: column; gap: 16px;">
                         <div class="detail-header">
                             <div>
-                                <h3 id="detail-date">Día: --</h3>
-                                <p class="detail-header-sub" id="detail-weekday">Día de la semana</p>
+                                <h3 id="detail-date">D&iacute;a: --</h3>
+                                <p class="detail-header-sub" id="detail-weekday">D&iacute;a de la semana</p>
                             </div>
                         </div>
 
                         <div class="detail-kpi-row">
                             <div class="detail-kpi-card">
-                                <div class="detail-kpi-title" id="detail-sales-title">Ventas del Día en esta Zona</div>
-                                <div class="detail-kpi-value" id="detail-sales-val" style="color: var(--primary);">€0.00</div>
+                                <div class="detail-kpi-title" id="detail-sales-title">Ventas del D&iacute;a en esta Zona</div>
+                                <div class="detail-kpi-value" id="detail-sales-val" style="color: var(--primary);">&euro;0.00</div>
                             </div>
                             <div class="detail-kpi-card">
-                                <div class="detail-kpi-title" id="detail-tx-title">Pedidos del Día</div>
+                                <div class="detail-kpi-title" id="detail-tx-title">Pedidos del D&iacute;a</div>
                                 <div class="detail-kpi-value" id="detail-tx-val">0 pedidos</div>
                             </div>
                         </div>
@@ -912,7 +915,7 @@ $part1 = @'
                                     <tr id="detail-table-headers">
                                         <th>Cliente (Ficha)</th>
                                         <th style="width: 70px;">Zona</th>
-                                        <th style="text-align: right; width: 110px;">Importe (€)</th>
+                                        <th style="text-align: right; width: 110px;">Importe (&euro;)</th>
                                     </tr>
                                 </thead>
                                 <tbody id="detail-table-body">
@@ -1473,10 +1476,10 @@ $part2 = @'
                             <div class="calendar-header-row">
                                 <div class="weekday-label">Lunes</div>
                                 <div class="weekday-label">Martes</div>
-                                <div class="weekday-label">Miércoles</div>
+                                <div class="weekday-label">Mi&eacute;rcoles</div>
                                 <div class="weekday-label">Jueves</div>
                                 <div class="weekday-label">Viernes</div>
-                                <div class="weekday-label">Sábado</div>
+                                <div class="weekday-label">S&aacute;bado</div>
                             </div>
                             <div id="calendar-rows-${zone}">
                                 ${gridHtml}
@@ -1631,10 +1634,10 @@ $part2 = @'
                         <div class="calendar-header-row">
                             <div class="weekday-label">Lunes</div>
                             <div class="weekday-label">Martes</div>
-                            <div class="weekday-label">Miércoles</div>
+                            <div class="weekday-label">Mi&eacute;rcoles</div>
                             <div class="weekday-label">Jueves</div>
                             <div class="weekday-label">Viernes</div>
-                            <div class="weekday-label">Sábado</div>
+                            <div class="weekday-label">S&aacute;bado</div>
                         </div>
                         <div id="calendar-rows-client">
                             ${gridHtml}
@@ -1928,10 +1931,10 @@ $part2 = @'
             // Modify client table headers
             const tableHeaders = document.getElementById('detail-table-headers');
             tableHeaders.innerHTML = `
-                <th>Día Pedido</th>
-                <th>Día Entrega</th>
+                <th>D&iacute;a Pedido</th>
+                <th>D&iacute;a Entrega</th>
                 <th style="width: 70px;">Zona</th>
-                <th style="text-align: right; width: 100px;">Importe (€)</th>
+                <th style="text-align: right; width: 100px;">Importe (&euro;)</th>
             `;
 
             // Hide search input local filter for client mode (it's not needed as it shows only their orders)
@@ -1997,11 +2000,11 @@ $part2 = @'
             tableHeaders.innerHTML = `
                 <th>Cliente (Ficha)</th>
                 <th style="width: 70px;">Zona</th>
-                <th style="text-align: right; width: 110px;">Importe (€)</th>
+                <th style="text-align: right; width: 110px;">Importe (&euro;)</th>
             `;
 
             // Dynamic header
-            document.getElementById('detail-date').textContent = `Día: ${dateStr} | Zona ${zone}`;
+            document.getElementById('detail-date').textContent = `D\u00eda: ${dateStr} | Zona ${zone}`;
             document.getElementById('detail-weekday').textContent = `${weekdayName} | Desglose de Operaciones`;
 
             let daySales = 0;
@@ -2018,11 +2021,11 @@ $part2 = @'
                 });
             }
 
-            document.getElementById('detail-sales-title').textContent = "Ventas del Día en esta Zona";
+            document.getElementById('detail-sales-title').textContent = "Ventas del D\u00eda en esta Zona";
             document.getElementById('detail-sales-val').textContent = formatMoney(daySales);
             document.getElementById('detail-sales-val').style.color = 'var(--primary)'; // restore default primary blue
 
-            document.getElementById('detail-tx-title').textContent = "Pedidos del Día";
+            document.getElementById('detail-tx-title').textContent = "Pedidos del D\u00eda";
             document.getElementById('detail-tx-val').textContent = `${dayTxCount} ${dayTxCount === 1 ? 'pedido' : 'pedidos'}`;
 
             // Save active transactions in variable for searching
